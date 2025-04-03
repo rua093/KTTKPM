@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    
+    <h:head>
+        <title>Danh sách công việc</title>
+    </h:head>
+    <h:body>
+        <h2>Danh sách công việc</h2>
+
+        <!-- Nút thêm công việc -->
+        <h:form>
+            <h:outputLink value="add_job.xhtml">
+                <h:outputText value="➕ Add Job" />
+            </h:outputLink>
+        </h:form>
+
+        <h:dataTable value="#{jobBean.jobList}" var="job" border="1">
+            <h:column>
+                <f:facet name="header">Tên công việc</f:facet>
+                #{job.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Mô tả</f:facet>
+                #{job.description}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ngày bắt đầu</f:facet>
+                <h:outputText value="#{job.startDate}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ngày kết thúc</f:facet>
+                <h:outputText value="#{job.endDate}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cấp bậc</f:facet>
+                #{job.level}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Địa điểm</f:facet>
+                #{job.location}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Số lượng</f:facet>
+                #{job.quantity}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Lương</f:facet>
+                #{job.salary}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Công ty</f:facet>
+                #{job.companyId.name}
+            </h:column>
+            <!-- Cột Delete -->
+            <h:column>
+                <f:facet name="header">Xóa</f:facet>
+                <h:form>
+                    <h:commandButton action="#{jobBean.delete(job.id)}" value="Delete" />
+                </h:form>        
+            </h:column>
+            <!-- Cột Edit -->
+            <h:column>
+                <f:facet name="header">Sửa</f:facet>
+                <h:form>
+                    <h:outputLink value="edit_job.xhtml">
+                        <h:outputText value="Edit" />
+                        <f:param name="id" value="#{job.id}" />
+                    </h:outputLink>
+                </h:form>        
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
