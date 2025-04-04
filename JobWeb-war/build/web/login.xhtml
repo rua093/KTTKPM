@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://xmlns.jcp.org/jsf/html"
+      xmlns:h="jakarta.faces.html">
+    <h:head>
+        <title>Đăng Nhập</title>
+    </h:head>
+    <h:body>
+        <h:form>
+    <h:outputLabel for="email" value="Email:" />
+    <h:inputText id="email" value="#{loginBean.email}" required="true" requiredMessage="Email là bắt buộc" />
+    
+    <h:outputLabel for="password" value="Password:" />
+    <h:inputSecret id="password" value="#{loginBean.password}" required="true" requiredMessage="Password là bắt buộc" />
+    
+    <h:commandButton value="Login" action="#{loginBean.login}" />
+</h:form>
+    </h:body>
+</html>

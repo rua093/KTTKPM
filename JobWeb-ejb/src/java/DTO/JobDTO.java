@@ -1,7 +1,9 @@
 package DTO;
 
+import entities.Skills;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -10,6 +12,7 @@ import java.util.Date;
  */
 public class JobDTO implements Serializable{
     private static final long serialVersionUID = 1L; 
+    private Integer id;
     private String name;
     private String description;
     private Date startDate;
@@ -19,6 +22,22 @@ public class JobDTO implements Serializable{
     private int quantity;
     private BigDecimal salary;
     private Integer companyId;
+    private Collection<Integer> skillsIdCollection;
+
+    public JobDTO(String name, String description, Date startDate, Date endDate, String level, String location, int quantity, BigDecimal salary, Integer companyId, Collection<Integer> skillsIdCollection) {
+        this.name = name;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.level = level;
+        this.location = location;
+        this.quantity = quantity;
+        this.salary = salary;
+        this.companyId = companyId;
+        this.skillsIdCollection = skillsIdCollection;
+    }
+    
+    
 
     // Constructor
     public JobDTO(String name, String description, Date startDate, Date endDate, 
@@ -37,7 +56,39 @@ public class JobDTO implements Serializable{
     public JobDTO() {
     }
 
+    public JobDTO(Integer id, String name, String description, Date startDate, Date endDate, String level, String location, int quantity, BigDecimal salary, Integer companyId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.level = level;
+        this.location = location;
+        this.quantity = quantity;
+        this.salary = salary;
+        this.companyId = companyId;
+    }
+
+    public Collection<Integer> getSkillsIdCollection() {
+        return skillsIdCollection;
+    }
+
+    public void setSkillsIdCollection(Collection<Integer> skillsIdCollection) {
+        this.skillsIdCollection = skillsIdCollection;
+    }
+
+    
+    
+    
+
+    public Integer getId() {
+        return id;
+    }
+
     // Getters and setters for each attribute
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

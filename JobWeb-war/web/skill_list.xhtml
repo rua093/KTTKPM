@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Danh sách kỹ năng</title>
+    </h:head>
+    <h:body>
+        <h2>Danh sách kỹ năng</h2>
+
+        <!-- Nút thêm kỹ năng -->
+        <h:form>
+            <h:outputLink value="add_skill.xhtml">
+                <h:outputText value="➕ Add Skill" />
+            </h:outputLink>
+        </h:form>
+
+        <!-- Bảng danh sách kỹ năng -->
+        <h:dataTable value="#{skillBean.skills}" var="skill" border="1">
+            <h:column>
+                <f:facet name="header">Tên kỹ năng</f:facet>
+                #{skill.name}
+            </h:column>
+
+            <!-- Cột Xóa -->
+            <h:column>
+                <f:facet name="header">Xóa</f:facet>
+                <h:form>
+                    <h:commandButton action="#{skillBean.deleteSkill(skill.id)}" value="Delete" />
+                </h:form>
+            </h:column>
+
+            <!-- Cột Chỉnh sửa -->
+            <h:column>
+                <f:facet name="header">Chỉnh sửa</f:facet>
+                <h:form>
+                    <h:commandButton action="#{skillBean.editSkill(skill.id)}" value="Edit" />
+                </h:form>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>

@@ -2,21 +2,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
-    
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <h:head>
         <title>Danh sách công việc</title>
     </h:head>
     <h:body>
         <h2>Danh sách công việc</h2>
 
-        <!-- Nút thêm công việc -->
+        <!-- Thanh điều hướng -->
         <h:form>
             <h:outputLink value="add_job.xhtml">
                 <h:outputText value="➕ Add Job" />
             </h:outputLink>
+            &nbsp;&nbsp;
+            <h:outputLink value="company_list.xhtml">
+                <h:outputText value="Company List" />
+            </h:outputLink>
+            &nbsp;&nbsp;
+            <h:outputLink value="user_list.xhtml">
+                <h:outputText value="User List" />
+            </h:outputLink>
+            &nbsp;&nbsp;
+            <h:outputLink value="skill_list.xhtml">
+                <h:outputText value="Skill List" />
+            </h:outputLink>
         </h:form>
 
+        <!-- Bảng công việc -->
         <h:dataTable value="#{jobBean.jobList}" var="job" border="1">
             <h:column>
                 <f:facet name="header">Tên công việc</f:facet>
@@ -58,22 +71,29 @@
                 <f:facet name="header">Công ty</f:facet>
                 #{job.companyId.name}
             </h:column>
-            <!-- Cột Delete -->
+
+            <!-- Cột Kỹ năng yêu cầu -->
+            <!-- Cột Kỹ năng yêu cầu -->
+<h:column>
+    <f:facet name="header">Kỹ năng yêu cầu</f:facet>
+    <h:outputText value="#{jobBean.getSkillNames(job)}" />
+</h:column>
+
+
+            <!-- Cột Xóa -->
             <h:column>
                 <f:facet name="header">Xóa</f:facet>
                 <h:form>
                     <h:commandButton action="#{jobBean.delete(job.id)}" value="Delete" />
-                </h:form>        
+                </h:form>
             </h:column>
-            <!-- Cột Edit -->
+
+            <!-- Cột Chỉnh sửa -->
             <h:column>
-                <f:facet name="header">Sửa</f:facet>
+                <f:facet name="header">Edit</f:facet>
                 <h:form>
-                    <h:outputLink value="edit_job.xhtml">
-                        <h:outputText value="Edit" />
-                        <f:param name="id" value="#{job.id}" />
-                    </h:outputLink>
-                </h:form>        
+                    <h:commandButton action="#{jobBean.edit(job.id)}" value="Edit" />
+                </h:form>
             </h:column>
         </h:dataTable>
     </h:body>

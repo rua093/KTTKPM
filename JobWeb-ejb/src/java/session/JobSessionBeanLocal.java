@@ -18,5 +18,6 @@ public interface JobSessionBeanLocal {
     void insert(Jobs job);  // Cập nhật tham số
     void delete(Integer id);
     void update(Jobs job);
+    Jobs findById(Integer id);
 }
 

@@ -7,6 +7,7 @@ package entities;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,7 +39,7 @@ public class Skills implements Serializable {
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "skillsCollection")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "skillsCollection")
     private Collection<Jobs> jobsCollection;
 
     public Skills() {

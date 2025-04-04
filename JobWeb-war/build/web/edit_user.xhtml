@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Chỉnh sửa Người Dùng</title>
+    </h:head>
+    <h:body>
+        <h2>Chỉnh sửa Người Dùng</h2>
+
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="name" value="Tên:" />
+                <h:inputText id="name" value="#{userBean.user.name}" required="true" maxlength="255" />
+
+                <h:outputLabel for="address" value="Địa chỉ:" />
+                <h:inputText id="address" value="#{userBean.user.address}" maxlength="255" />
+
+                <h:outputLabel for="age" value="Tuổi:" />
+                <h:inputText id="age" value="#{userBean.user.age}" required="true" maxlength="3">
+                    <f:validateLongRange minimum="18" />
+                </h:inputText>
+
+                <h:outputLabel for="email" value="Email:" />
+                <h:inputText id="email" value="#{userBean.user.email}" required="true" maxlength="100">
+                    <f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+                </h:inputText>
+
+                <h:outputLabel for="gender" value="Giới tính:" />
+                <h:selectOneMenu id="gender" value="#{userBean.user.gender}" required="true">
+                    <f:selectItem itemValue="Male" itemLabel="Nam" />
+                    <f:selectItem itemValue="Female" itemLabel="Nữ" />
+                    <f:selectItem itemValue="Other" itemLabel="Khác" />
+                </h:selectOneMenu>
+
+                <h:outputLabel for="password" value="Mật khẩu:" />
+                <h:inputSecret id="password" value="#{userBean.user.password}" required="true" maxlength="255" />
+
+            </h:panelGrid>
+
+            <h:commandButton value="Cập nhập" action="#{userBean.addUser}" />
+            <h:commandButton value="Hủy" action="user_list.xhtml" immediate="true" />
+        </h:form>
+    </h:body>
+</html>

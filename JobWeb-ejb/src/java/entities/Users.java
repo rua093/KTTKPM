@@ -145,8 +145,17 @@ public class Users implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "entities.Users[ id=" + id + " ]";
-    }
+public String toString() {
+    return "Users{" +
+           "id=" + id + 
+           ", name='" + name + '\'' + 
+           ", address='" + address + '\'' + 
+           ", age=" + age + 
+           ", email='" + email + '\'' + 
+           ", gender='" + gender + '\'' + 
+           ", password='" + password + '\'' + 
+           '}';
+}
+
     
 }

@@ -67,4 +67,9 @@ public class JobSessionBean implements JobSessionBeanLocal {
         em.getTransaction().commit();
     }
 
+    @Override
+    public Jobs findById(Integer id) {
+        return em.find(Jobs.class, id);
+    }
+
 }

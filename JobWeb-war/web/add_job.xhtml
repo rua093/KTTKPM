@@ -3,54 +3,65 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
-    <h:head>
-        <title>Thêm Công Việc</title>
-    </h:head>
-    <h:body>
-        <h2>Thêm Công Việc</h2>
-        
-        <h:form>
-            <h:panelGrid columns="2">
-                <h:outputLabel for="name" value="Tên Công Việc:" />
-                <h:inputText id="name" value="#{jobBean.jobDto.name}" required="true" requiredMessage="Tên công việc là bắt buộc." />
-                
-                <h:outputLabel for="description" value="Mô Tả:" />
-                <h:inputTextarea id="description" value="#{jobBean.jobDto.description}" />
-                
-                <h:outputLabel for="startDate" value="Ngày Bắt Đầu:" />
-                <h:inputText id="startDate" value="#{jobBean.jobDto.startDate}">
-                    <f:convertDateTime pattern="yyyy-MM-dd" />
-                </h:inputText>
-                
-                <h:outputLabel for="endDate" value="Ngày Kết Thúc:" />
-                <h:inputText id="endDate" value="#{jobBean.jobDto.endDate}">
-                    <f:convertDateTime pattern="yyyy-MM-dd" />
-                </h:inputText>
-                
-                <h:outputLabel for="level" value="Cấp Bậc:" />
-                <h:inputText id="level" value="#{jobBean.jobDto.level}" />
-                
-                <h:outputLabel for="location" value="Địa Điểm:" />
-                <h:inputText id="location" value="#{jobBean.jobDto.location}" />
-                
-                <h:outputLabel for="quantity" value="Số Lượng:" />
-                <h:inputText id="quantity" value="#{jobBean.jobDto.quantity}" required="true" requiredMessage="Số lượng là bắt buộc." />
-                
-                <h:outputLabel for="salary" value="Lương:" />
-                <h:inputText id="salary" value="#{jobBean.jobDto.salary}" />
-                
-                <h:outputLabel for="company" value="Công Ty:" />
-                <h:selectOneMenu id="company" value="#{jobBean.jobDto.companyId}" required="true" requiredMessage="Vui lòng chọn công ty">
-                    <f:selectItems value="#{jobBean.companyList}" var="company" itemValue="#{company.id}" itemLabel="#{company.name}" />
-                </h:selectOneMenu>
 
-            </h:panelGrid>
-            
-            <h:messages globalOnly="true" style="color:red"/>
-            
-            <h:commandButton value="Save" action="#{jobBean.insert()}" />
-            <h:commandButton value="Cancel" immediate="true" action="job_list.xhtml?faces-redirect=true" />
-        </h:form>
-    </h:body>
+<h:head>
+    <title>Thêm Công Việc</title>
+</h:head>
+
+<h:body>
+    <h2>Thêm Công Việc</h2>
+
+    <h:form>
+        <h:panelGrid columns="2" cellpadding="5">
+
+            <h:outputLabel for="name" value="Tên Công Việc:" />
+            <h:inputText id="name" value="#{jobBean.jobDto.name}" required="true" requiredMessage="Tên công việc là bắt buộc." />
+
+            <h:outputLabel for="description" value="Mô Tả:" />
+            <h:inputTextarea id="description" value="#{jobBean.jobDto.description}" />
+
+            <h:outputLabel for="startDate" value="Ngày Bắt Đầu:" />
+            <h:inputText id="startDate" value="#{jobBean.jobDto.startDate}">
+                <f:convertDateTime pattern="yyyy-MM-dd" />
+            </h:inputText>
+
+            <h:outputLabel for="endDate" value="Ngày Kết Thúc:" />
+            <h:inputText id="endDate" value="#{jobBean.jobDto.endDate}">
+                <f:convertDateTime pattern="yyyy-MM-dd" />
+            </h:inputText>
+
+            <h:outputLabel for="level" value="Cấp Bậc:" />
+            <h:inputText id="level" value="#{jobBean.jobDto.level}" />
+
+            <h:outputLabel for="location" value="Địa Điểm:" />
+            <h:inputText id="location" value="#{jobBean.jobDto.location}" />
+
+            <h:outputLabel for="quantity" value="Số Lượng:" />
+            <h:inputText id="quantity" value="#{jobBean.jobDto.quantity}" required="true" requiredMessage="Số lượng là bắt buộc." />
+
+            <h:outputLabel for="salary" value="Lương:" />
+            <h:inputText id="salary" value="#{jobBean.jobDto.salary}" />
+
+            <h:outputLabel for="company" value="Công Ty:" />
+            <h:selectOneMenu id="company" value="#{jobBean.jobDto.companyId}" required="true" requiredMessage="Vui lòng chọn công ty">
+                <f:selectItem itemValue="" itemLabel="--Chọn công ty--" noSelectionOption="true" />
+                <f:selectItems value="#{jobBean.companyList}" var="company" itemValue="#{company.id}" itemLabel="#{company.name}" />
+            </h:selectOneMenu>
+
+            <!-- Phần chọn nhiều kỹ năng -->
+            <h:outputLabel for="skills" value="Kỹ Năng Yêu Cầu:" />
+            <h:selectManyCheckbox id="skills" value="#{jobBean.jobDto.skillsIdCollection}">
+                <f:selectItems value="#{jobBean.skillList}" var="skill"
+                               itemValue="#{skill.id}" itemLabel="#{skill.name}" />
+            </h:selectManyCheckbox>
+
+        </h:panelGrid>
+
+        <h:messages globalOnly="true" style="color:red"/>
+
+        <h:commandButton value="Lưu Công Việc" action="#{jobBean.insert()}" />
+        <h:commandButton value="Quay Lại" immediate="true" action="index.xhtml" />
+    </h:form>
+</h:body>
+
 </html>

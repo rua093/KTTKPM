@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Chỉnh Sửa Công Ty</title>
+    </h:head>
+    <h:body>
+        <h2>Chỉnh Sửa Công Ty</h2>
+
+        <!-- Form chỉnh sửa công ty -->
+        <h:form>
+            <!-- Tên công ty -->
+            <h:outputLabel for="name" value="Tên công ty:" />
+            <h:inputText id="name" value="#{companyBean.company.name}" required="true" />
+            <h:message for="name" style="color:red" />
+
+            <!-- Địa chỉ công ty -->
+            <h:outputLabel for="address" value="Địa chỉ:" />
+            <h:inputText id="address" value="#{companyBean.company.address}" required="true" />
+            <h:message for="address" style="color:red" />
+
+            <!-- Mô tả công ty -->
+            <h:outputLabel for="description" value="Mô tả:" />
+            <h:inputTextarea id="description" value="#{companyBean.company.description}" required="true" rows="4" cols="50" />
+            <h:message for="description" style="color:red" />
+
+            <!-- Nút Submit -->
+            <h:commandButton value="Cập nhật Công Ty" action="#{companyBean.update()}" />
+
+            <!-- Nút Quay lại -->
+            <h:commandButton value="Quay lại" action="company_list.xhtml" />
+        </h:form>
+    </h:body>
+</html>
